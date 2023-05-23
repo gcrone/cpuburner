@@ -26,7 +26,7 @@ public:
   explicit CPUBurner(const std::string& name);
 
   void init(const data_t&) override;
-  void init(const dunedaq::dal::DaqModule*) override;
+  void init(const dunedaq::coredal::DaqModule*) override;
 
   CPUBurner(const CPUBurner&) = delete;
   CPUBurner& operator=(const CPUBurner&) = delete;

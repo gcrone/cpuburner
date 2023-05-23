@@ -63,10 +63,10 @@
 
 <oks-data>
 
-<info name="" type="" num-of-items="29" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230518T151928"/>
+<info name="" type="" num-of-items="36" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230523T140218"/>
 
 <include>
- <file path="schema/dunedaqdal/dunedaq.schema.xml"/>
+ <file path="schema/coredal/dunedaq.schema.xml"/>
  <file path="schema/cpuburner/cpuburner.schema.xml"/>
 </include>
 
@@ -103,6 +103,12 @@
  <comment creation-time="20230518T135545" created-by="gjc" created-on="thinkpad" author="gjc" text="xx"/>
  <comment creation-time="20230518T151723" created-by="gjc" created-on="thinkpad" author="gjc" text="vv"/>
  <comment creation-time="20230518T151928" created-by="gjc" created-on="thinkpad" author="gjc" text="ii"/>
+ <comment creation-time="20230522T103240" created-by="gjc" created-on="thinkpad" author="gjc" text="hh"/>
+ <comment creation-time="20230523T112408" created-by="gjc" created-on="thinkpad" author="gjc" text="z"/>
+ <comment creation-time="20230523T113119" created-by="gjc" created-on="thinkpad" author="gjc" text="d"/>
+ <comment creation-time="20230523T114244" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
+ <comment creation-time="20230523T114610" created-by="gjc" created-on="thinkpad" author="gjc" text="jj"/>
+ <comment creation-time="20230523T140218" created-by="gjc" created-on="thinkpad" author="gjc" text="z"/>
 </comments>
 
 
@@ -268,15 +274,26 @@
  <attr name="use_connectivity_server" type="bool" val="0"/>
  <attr name="connectivity_service_interval_ms" type="u32" val="1"/>
  <rel name="environment">
-  <ref class="VariableSet" id="ERSenvironment"/>
+  <ref class="VariableSet" id="commonEnv"/>
  </rel>
  <rel name="disabled">
   <ref class="CpuBurnerModule" id="burnMod-2"/>
+  <ref class="DaqApplication" id="burner-2"/>
  </rel>
  <rel name="segments">
   <ref class="Segment" id="burnerSegment"/>
   <ref class="Segment" id="burnerSegmet-2"/>
  </rel>
+</obj>
+
+<obj class="Variable" id="CONNECTION_PORT">
+ <attr name="name" type="string" val="CONNECTION_PORT"/>
+ <attr name="value" type="string" val="5000"/>
+</obj>
+
+<obj class="Variable" id="CONNECTION_SERVER">
+ <attr name="name" type="string" val="CONNECTION_SERVER"/>
+ <attr name="value" type="string" val="127.0.0.1"/>
 </obj>
 
 <obj class="Variable" id="ERS_DEBUG_LEVEL">
@@ -308,6 +325,16 @@
  <attr name="value" type="string" val="erstrace,throttle,lstdout"/>
 </obj>
 
+<obj class="Variable" id="OPMON_INTERVAL">
+ <attr name="name" type="string" val="DUNEDAQ_OPMON_INTERVAL"/>
+ <attr name="value" type="string" val="10"/>
+</obj>
+
+<obj class="Variable" id="OPMON_LEVEL">
+ <attr name="name" type="string" val="DUNEDAQ_OPMON_LEVEL"/>
+ <attr name="value" type="string" val="1"/>
+</obj>
+
 <obj class="Variable" id="moreDebug">
  <attr name="description" type="string" val="Increased ERS debug level "/>
  <attr name="name" type="string" val="DUNEDAQ_ERS_DEBUG_LEVEL"/>
@@ -322,6 +349,28 @@
   <ref class="Variable" id="ERS_FATAL"/>
   <ref class="Variable" id="ERS_WARNING"/>
   <ref class="Variable" id="ERS_INFO"/>
+ </rel>
+</obj>
+
+<obj class="VariableSet" id="commonEnv">
+ <rel name="contains">
+  <ref class="VariableSet" id="ERSenvironment"/>
+  <ref class="VariableSet" id="connectionEnvironment"/>
+ </rel>
+</obj>
+
+<obj class="VariableSet" id="connectionEnvironment">
+ <rel name="contains">
+  <ref class="Variable" id="CONNECTION_PORT"/>
+  <ref class="Variable" id="CONNECTION_SERVER"/>
+ </rel>
+</obj>
+
+<obj class="VariableSet" id="opmonEnv">
+ <attr name="description" type="string" val="OPMon related environment"/>
+ <rel name="contains">
+  <ref class="Variable" id="OPMON_LEVEL"/>
+  <ref class="Variable" id="OPMON_INTERVAL"/>
  </rel>
 </obj>
 

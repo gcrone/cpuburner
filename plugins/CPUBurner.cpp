@@ -13,9 +13,9 @@
 #include "cpuburner/cpuburner/Nljs.hpp"
 #include "cpuburner/cpuburnerinfo/InfoNljs.hpp"
 
-#include "dunedaqdal/DaqModule.hpp"
-#include "dunedaqdal/HostResource.hpp"
-#include "dunedaqdal/ProcessingResource.hpp"
+#include "coredal/DaqModule.hpp"
+#include "coredal/HostResource.hpp"
+#include "coredal/ProcessingResource.hpp"
 
 #include "cpuburner/CpuBurnerModule.hpp"
 
@@ -48,17 +48,17 @@ CPUBurner::init(const data_t& /* structured args */)
 {}
 
 void
-CPUBurner::init(const dunedaq::dal::DaqModule* modconf) {
-  auto conf = modconf->cast<dunedaq::dal::CpuBurnerModule>();
+CPUBurner::init(const dunedaq::coredal::DaqModule* modconf) {
+  auto conf = modconf->cast<dunedaq::coredal::CpuBurnerModule>();
   if (conf == nullptr) {
-    throw appfwk::OksCastIssue(ERS_HERE, get_name(), "dunedaq::dal::CpuBurnerModule");
+    throw appfwk::OksCastIssue(ERS_HERE, get_name(), "dunedaq::coredal::CpuBurnerModule");
   }
   m_burnTime = conf->get_burn_time_us();
   m_sleepTime = conf->get_sleep_time_us();
   m_memSize = conf->get_mem_size();
   
   for (auto resource : conf->get_used_resources()) {
-    auto proc = resource->cast<dunedaq::dal::ProcessingResource>();
+    auto proc = resource->cast<dunedaq::coredal::ProcessingResource>();
     if (proc) {
       auto node = proc->get_numa_id();
       coremanager::CoreManager::get()->allocate(get_name(), node);
