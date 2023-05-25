@@ -15,19 +15,13 @@ find_package(oksdbinterfaces REQUIRED)
 find_package(coredal REQUIRED)
 
 daq_generate_dal(cpuburner.schema.xml
-  NAMESPACE dunedaq::coredal
-  INCLUDE ${CMAKE_CODEGEN_BINARY_DIR}/include/${PROJECT_NAME}
-  INCLUDE_DIRECTORIES ${coredal_DIR}
-  CPP ${CMAKE_CODEGEN_BINARY_DIR}/src
-  CPP_OUTPUT  dal_cpp_srcs
-  DUMP_OUTPUT cpp_dump_src)
-
-daq_add_library(${dal_cpp_srcs} DAL LINK_LIBRARIES coredal::coredal oksdbinterfaces::oksdbinterfaces okssystem::okssystem logging::logging)
+  NAMESPACE dunedaq::cpuburner::dal DEP_PKGS coredal)
 
 daq_codegen(cpuburner.jsonnet TEMPLATES Structs.hpp.j2 Nljs.hpp.j2)
 daq_codegen(cpuburnerinfo.jsonnet DEP_PKGS opmonlib TEMPLATES opmonlib/InfoStructs.hpp.j2 opmonlib/InfoNljs.hpp.j2)
 
-daq_add_plugin(CPUBurner duneDAQModule LINK_LIBRARIES appfwk::appfwk cpuburner)
+daq_add_plugin(CPUBurner duneDAQModule 
+  LINK_LIBRARIES appfwk::appfwk cpuburner_oks)
 
 daq_install()
 

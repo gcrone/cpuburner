@@ -49,7 +49,7 @@ CPUBurner::init(const data_t& /* structured args */)
 
 void
 CPUBurner::init(const dunedaq::coredal::DaqModule* modconf) {
-  auto conf = modconf->cast<dunedaq::coredal::CpuBurnerModule>();
+  auto conf = modconf->cast<dal::CpuBurnerModule>();
   if (conf == nullptr) {
     throw appfwk::OksCastIssue(ERS_HERE, get_name(), "dunedaq::coredal::CpuBurnerModule");
   }
