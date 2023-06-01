@@ -63,7 +63,7 @@
 
 <oks-data>
 
-<info name="" type="" num-of-items="36" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230523T140218"/>
+<info name="" type="" num-of-items="36" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230526T110750"/>
 
 <include>
  <file path="schema/coredal/dunedaq.schema.xml"/>
@@ -72,43 +72,6 @@
 
 <comments>
  <comment creation-time="20230320T153410" created-by="gjc" created-on="thinkpad" author="Unknown" text="New session file"/>
- <comment creation-time="20230425T112437" created-by="gjc" created-on="thinkpad" author="gjc" text="j"/>
- <comment creation-time="20230425T113319" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
- <comment creation-time="20230425T142029" created-by="gjc" created-on="thinkpad" author="gjc" text=";"/>
- <comment creation-time="20230425T150955" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
- <comment creation-time="20230425T152618" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
- <comment creation-time="20230425T152859" created-by="gjc" created-on="thinkpad" author="gjc" text="h"/>
- <comment creation-time="20230425T153540" created-by="gjc" created-on="thinkpad" author="gjc" text="\"/>
- <comment creation-time="20230425T154019" created-by="gjc" created-on="thinkpad" author="gjc" text="l"/>
- <comment creation-time="20230426T080300" created-by="gjc" created-on="thinkpad" author="gjc" text="g"/>
- <comment creation-time="20230426T080527" created-by="gjc" created-on="thinkpad" author="gjc" text="l"/>
- <comment creation-time="20230426T110615" created-by="gjc" created-on="thinkpad" author="gjc" text="zz"/>
- <comment creation-time="20230426T110906" created-by="gjc" created-on="thinkpad" author="gjc" text="c"/>
- <comment creation-time="20230426T111138" created-by="gjc" created-on="thinkpad" author="gjc" text="v"/>
- <comment creation-time="20230504T105720" created-by="gjc" created-on="thinkpad" author="gjc" text="d"/>
- <comment creation-time="20230504T105916" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
- <comment creation-time="20230504T112826" created-by="gjc" created-on="thinkpad" author="gjc" text="d"/>
- <comment creation-time="20230504T134913" created-by="gjc" created-on="thinkpad" author="gjc" text="&apos;"/>
- <comment creation-time="20230504T135614" created-by="gjc" created-on="thinkpad" author="gjc" text="z"/>
- <comment creation-time="20230509T084456" created-by="gjc" created-on="thinkpad" author="gjc" text="aa"/>
- <comment creation-time="20230509T094304" created-by="gjc" created-on="thinkpad" author="gjc" text="&apos;&apos;"/>
- <comment creation-time="20230509T103251" created-by="gjc" created-on="thinkpad" author="gjc" text="zz"/>
- <comment creation-time="20230509T103319" created-by="gjc" created-on="thinkpad" author="gjc" text=";"/>
- <comment creation-time="20230510T110742" created-by="gjc" created-on="thinkpad" author="gjc" text="kk"/>
- <comment creation-time="20230510T111127" created-by="gjc" created-on="thinkpad" author="gjc" text=";"/>
- <comment creation-time="20230510T132225" created-by="gjc" created-on="thinkpad" author="gjc" text="x"/>
- <comment creation-time="20230511T152621" created-by="gjc" created-on="thinkpad" author="gjc" text="t"/>
- <comment creation-time="20230512T085327" created-by="gjc" created-on="thinkpad" author="gjc" text="i"/>
- <comment creation-time="20230518T135045" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
- <comment creation-time="20230518T135545" created-by="gjc" created-on="thinkpad" author="gjc" text="xx"/>
- <comment creation-time="20230518T151723" created-by="gjc" created-on="thinkpad" author="gjc" text="vv"/>
- <comment creation-time="20230518T151928" created-by="gjc" created-on="thinkpad" author="gjc" text="ii"/>
- <comment creation-time="20230522T103240" created-by="gjc" created-on="thinkpad" author="gjc" text="hh"/>
- <comment creation-time="20230523T112408" created-by="gjc" created-on="thinkpad" author="gjc" text="z"/>
- <comment creation-time="20230523T113119" created-by="gjc" created-on="thinkpad" author="gjc" text="d"/>
- <comment creation-time="20230523T114244" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
- <comment creation-time="20230523T114610" created-by="gjc" created-on="thinkpad" author="gjc" text="jj"/>
- <comment creation-time="20230523T140218" created-by="gjc" created-on="thinkpad" author="gjc" text="z"/>
 </comments>
 
 
@@ -176,7 +139,7 @@
  <rel name="applicationEnvironment">
   <ref class="Variable" id="moreDebug"/>
  </rel>
- <rel name="host" class="VirtualHost" id="burner-1-host"/>
+ <rel name="runs_on" class="VirtualHost" id="burner-1-host"/>
  <rel name="contains">
   <ref class="CpuBurnerModule" id="burnMod-1"/>
   <ref class="CpuBurnerModule" id="burnMod-2"/>
@@ -188,7 +151,7 @@
 <obj class="DaqApplication" id="burner-2">
  <attr name="port" type="u16" val="3333"/>
  <attr name="application_name" type="string" val="daq_application"/>
- <rel name="host" class="VirtualHost" id="burner2-host"/>
+ <rel name="runs_on" class="VirtualHost" id="burner2-host"/>
  <rel name="contains">
   <ref class="CpuBurnerModule" id="burner2-module1"/>
   <ref class="CpuBurnerModule" id="burner2-module2"/>
@@ -244,7 +207,7 @@
 <obj class="RCApplication" id="burn-controller-1">
  <attr name="application_name" type="string" val="run_controller"/>
  <attr name="timeout" type="u16" val="20"/>
- <rel name="host" class="VirtualHost" id="burner-1-host"/>
+ <rel name="runs_on" class="VirtualHost" id="burner-1-host"/>
 </obj>
 
 <obj class="ResourceSetOR" id="bmods">
@@ -280,9 +243,8 @@
   <ref class="CpuBurnerModule" id="burnMod-2"/>
   <ref class="DaqApplication" id="burner-2"/>
  </rel>
- <rel name="segments">
+ <rel name="segment">
   <ref class="Segment" id="burnerSegment"/>
-  <ref class="Segment" id="burnerSegmet-2"/>
  </rel>
 </obj>
 
@@ -376,7 +338,7 @@
 
 <obj class="VirtualHost" id="burner-1-host">
  <attr name="physical_host_name" type="string" val="localhost"/>
- <rel name="hw_resources">
+ <rel name="uses">
   <ref class="ProcessingResource" id="numa1-localhost"/>
   <ref class="ProcessingResource" id="numa0-localhost"/>
  </rel>
@@ -384,14 +346,14 @@
 
 <obj class="VirtualHost" id="burner2-host">
  <attr name="physical_host_name" type="string" val="np04-srv-016"/>
- <rel name="hw_resources">
+ <rel name="uses">
   <ref class="ProcessingResource" id="burner2-cores"/>
  </rel>
 </obj>
 
 <obj class="VirtualHost" id="burner3-host">
  <attr name="physical_host_name" type="string" val="np04-srv-016"/>
- <rel name="hw_resources">
+ <rel name="uses">
   <ref class="ProcessingResource" id="burner3-cores"/>
  </rel>
 </obj>

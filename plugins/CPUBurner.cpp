@@ -14,7 +14,7 @@
 #include "cpuburner/cpuburnerinfo/InfoNljs.hpp"
 
 #include "coredal/DaqModule.hpp"
-#include "coredal/HostResource.hpp"
+#include "coredal/HostComponent.hpp"
 #include "coredal/ProcessingResource.hpp"
 
 #include "cpuburner/CpuBurnerModule.hpp"
