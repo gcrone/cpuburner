@@ -63,7 +63,7 @@
 
 <oks-data>
 
-<info name="" type="" num-of-items="36" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230526T110750"/>
+<info name="" type="" num-of-items="37" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230601T083737"/>
 
 <include>
  <file path="schema/coredal/dunedaq.schema.xml"/>
@@ -72,6 +72,9 @@
 
 <comments>
  <comment creation-time="20230320T153410" created-by="gjc" created-on="thinkpad" author="Unknown" text="New session file"/>
+ <comment creation-time="20230601T082948" created-by="gjc" created-on="thinkpad" author="gjc" text="updated"/>
+ <comment creation-time="20230601T083315" created-by="gjc" created-on="thinkpad" author="gjc" text="update"/>
+ <comment creation-time="20230601T083737" created-by="gjc" created-on="thinkpad" author="gjc" text="Add Physical hosts"/>
 </comments>
 
 
@@ -134,7 +137,6 @@
 </obj>
 
 <obj class="DaqApplication" id="burner-1">
- <attr name="port" type="u16" val="3000"/>
  <attr name="application_name" type="string" val="daq_application"/>
  <rel name="applicationEnvironment">
   <ref class="Variable" id="moreDebug"/>
@@ -149,7 +151,6 @@
 </obj>
 
 <obj class="DaqApplication" id="burner-2">
- <attr name="port" type="u16" val="3333"/>
  <attr name="application_name" type="string" val="daq_application"/>
  <rel name="runs_on" class="VirtualHost" id="burner2-host"/>
  <rel name="contains">
@@ -166,6 +167,20 @@
  </attr>
  <attr name="speed" type="u16" val="1"/>
  <attr name="name" type="enum" val="Control"/>
+</obj>
+
+<obj class="PhysicalHost" id="localhost">
+ <rel name="contains">
+  <ref class="ProcessingResource" id="numa0-localhost"/>
+  <ref class="ProcessingResource" id="numa1-localhost"/>
+ </rel>
+</obj>
+
+<obj class="PhysicalHost" id="np04-srv-016">
+ <rel name="contains">
+  <ref class="ProcessingResource" id="burner2-cores"/>
+  <ref class="ProcessingResource" id="burner3-cores"/>
+ </rel>
 </obj>
 
 <obj class="ProcessingResource" id="burner2-cores">
@@ -221,19 +236,14 @@
  <rel name="applications">
   <ref class="DaqApplication" id="burner-1"/>
  </rel>
+ <rel name="controller" class="RCApplication" id="burn-controller-1"/>
  <rel name="resources">
   <ref class="ResourceSetOR" id="bmods"/>
- </rel>
- <rel name="controller" class="RCApplication" id="burn-controller-1"/>
-</obj>
-
-<obj class="Segment" id="burnerSegmet-2">
- <rel name="applications">
-  <ref class="DaqApplication" id="burner-2"/>
  </rel>
 </obj>
 
 <obj class="Session" id="burner-session">
+ <attr name="description" type="string" val="Example Session to excercise CPU burner module"/>
  <attr name="use_connectivity_server" type="bool" val="0"/>
  <attr name="connectivity_service_interval_ms" type="u32" val="1"/>
  <rel name="environment">
@@ -243,9 +253,7 @@
   <ref class="CpuBurnerModule" id="burnMod-2"/>
   <ref class="DaqApplication" id="burner-2"/>
  </rel>
- <rel name="segment">
-  <ref class="Segment" id="burnerSegment"/>
- </rel>
+ <rel name="segment" class="Segment" id="burnerSegment"/>
 </obj>
 
 <obj class="Variable" id="CONNECTION_PORT">
@@ -337,25 +345,25 @@
 </obj>
 
 <obj class="VirtualHost" id="burner-1-host">
- <attr name="physical_host_name" type="string" val="localhost"/>
  <rel name="uses">
   <ref class="ProcessingResource" id="numa1-localhost"/>
   <ref class="ProcessingResource" id="numa0-localhost"/>
  </rel>
+ <rel name="runs_on" class="PhysicalHost" id="localhost"/>
 </obj>
 
 <obj class="VirtualHost" id="burner2-host">
- <attr name="physical_host_name" type="string" val="np04-srv-016"/>
  <rel name="uses">
   <ref class="ProcessingResource" id="burner2-cores"/>
  </rel>
+ <rel name="runs_on" class="PhysicalHost" id="np04-srv-016"/>
 </obj>
 
 <obj class="VirtualHost" id="burner3-host">
- <attr name="physical_host_name" type="string" val="np04-srv-016"/>
  <rel name="uses">
   <ref class="ProcessingResource" id="burner3-cores"/>
  </rel>
+ <rel name="runs_on" class="PhysicalHost" id="np04-srv-016"/>
 </obj>
 
 </oks-data>
