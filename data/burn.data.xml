@@ -63,7 +63,7 @@
 
 <oks-data>
 
-<info name="" type="" num-of-items="37" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230601T083737"/>
+<info name="" type="" num-of-items="39" oks-format="data" oks-version="862f2957270" created-by="gjc" created-on="thinkpad" creation-time="20230320T153246" last-modified-by="gjc" last-modified-on="thinkpad" last-modification-time="20230608T145702"/>
 
 <include>
  <file path="schema/coredal/dunedaq.schema.xml"/>
@@ -75,6 +75,10 @@
  <comment creation-time="20230601T082948" created-by="gjc" created-on="thinkpad" author="gjc" text="updated"/>
  <comment creation-time="20230601T083315" created-by="gjc" created-on="thinkpad" author="gjc" text="update"/>
  <comment creation-time="20230601T083737" created-by="gjc" created-on="thinkpad" author="gjc" text="Add Physical hosts"/>
+ <comment creation-time="20230607T100256" created-by="gjc" created-on="thinkpad" author="gjc" text="a"/>
+ <comment creation-time="20230608T105034" created-by="gjc" created-on="thinkpad" author="gjc" text="z"/>
+ <comment creation-time="20230608T145010" created-by="gjc" created-on="thinkpad" author="gjc" text="x"/>
+ <comment creation-time="20230608T145702" created-by="gjc" created-on="thinkpad" author="gjc" text="jh"/>
 </comments>
 
 
@@ -162,9 +166,7 @@
 
 <obj class="NetworkInterface" id="ln0">
  <attr name="address" type="string" val="127.0.0.1"/>
- <attr name="networkMask" type="string">
-  <data val="255.255.255.0"/>
- </attr>
+ <attr name="networkMask" type="string" val="255.255.255.0"/>
  <attr name="speed" type="u16" val="1"/>
  <attr name="name" type="enum" val="Control"/>
 </obj>
@@ -221,7 +223,6 @@
 
 <obj class="RCApplication" id="burn-controller-1">
  <attr name="application_name" type="string" val="run_controller"/>
- <attr name="timeout" type="u16" val="20"/>
  <rel name="runs_on" class="VirtualHost" id="burner-1-host"/>
 </obj>
 
@@ -248,6 +249,20 @@
  <attr name="connectivity_service_interval_ms" type="u32" val="1"/>
  <rel name="environment">
   <ref class="VariableSet" id="commonEnv"/>
+ </rel>
+ <rel name="disabled">
+  <ref class="CpuBurnerModule" id="burnMod-2"/>
+  <ref class="DaqApplication" id="burner-2"/>
+ </rel>
+ <rel name="segment" class="Segment" id="burnerSegment"/>
+</obj>
+
+<obj class="Session" id="burner-session2">
+ <attr name="description" type="string" val="Example Session to excercise CPU burner module"/>
+ <attr name="use_connectivity_server" type="bool" val="0"/>
+ <attr name="connectivity_service_interval_ms" type="u32" val="1"/>
+ <rel name="environment">
+  <ref class="VariableSet" id="commonEnv2"/>
  </rel>
  <rel name="disabled">
   <ref class="CpuBurnerModule" id="burnMod-2"/>
@@ -311,21 +326,19 @@
  <attr name="value" type="string" val="9"/>
 </obj>
 
-<obj class="VariableSet" id="ERSenvironment">
- <attr name="description" type="string" val="ERS related environment variables"/>
+<obj class="VariableSet" id="commonEnv">
  <rel name="contains">
-  <ref class="Variable" id="ERS_DEBUG_LEVEL"/>
-  <ref class="Variable" id="ERS_ERROR"/>
-  <ref class="Variable" id="ERS_FATAL"/>
-  <ref class="Variable" id="ERS_WARNING"/>
-  <ref class="Variable" id="ERS_INFO"/>
+  <ref class="VariableSet" id="ersEnvironment"/>
+  <ref class="VariableSet" id="connectionEnvironment"/>
+  <ref class="VariableSet" id="opmonEnv"/>
  </rel>
 </obj>
 
-<obj class="VariableSet" id="commonEnv">
+<obj class="VariableSet" id="commonEnv2">
  <rel name="contains">
-  <ref class="VariableSet" id="ERSenvironment"/>
+  <ref class="VariableSet" id="ersEnvironment"/>
   <ref class="VariableSet" id="connectionEnvironment"/>
+  <ref class="VariableSet" id="opmonEnv"/>
  </rel>
 </obj>
 
@@ -333,6 +346,17 @@
  <rel name="contains">
   <ref class="Variable" id="CONNECTION_PORT"/>
   <ref class="Variable" id="CONNECTION_SERVER"/>
+ </rel>
+</obj>
+
+<obj class="VariableSet" id="ersEnvironment">
+ <attr name="description" type="string" val="ERS related environment variables"/>
+ <rel name="contains">
+  <ref class="Variable" id="ERS_DEBUG_LEVEL"/>
+  <ref class="Variable" id="ERS_ERROR"/>
+  <ref class="Variable" id="ERS_FATAL"/>
+  <ref class="Variable" id="ERS_WARNING"/>
+  <ref class="Variable" id="ERS_INFO"/>
  </rel>
 </obj>
 

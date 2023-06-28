@@ -13,15 +13,16 @@ find_package(okssystem REQUIRED)
 find_package(genconfig REQUIRED)
 find_package(oksdbinterfaces REQUIRED)
 find_package(coredal REQUIRED)
+find_package(coremanager REQUIRED)
 
-daq_generate_dal(cpuburner.schema.xml
+daq_oks_codegen(cpuburner.schema.xml
   NAMESPACE dunedaq::cpuburner::dal DEP_PKGS coredal)
 
 daq_codegen(cpuburner.jsonnet TEMPLATES Structs.hpp.j2 Nljs.hpp.j2)
 daq_codegen(cpuburnerinfo.jsonnet DEP_PKGS opmonlib TEMPLATES opmonlib/InfoStructs.hpp.j2 opmonlib/InfoNljs.hpp.j2)
 
 daq_add_plugin(CPUBurner duneDAQModule 
-  LINK_LIBRARIES appfwk::appfwk cpuburner_oks)
+  LINK_LIBRARIES appfwk::appfwk cpuburner_oks coremanager coredal_oks)
 
 daq_install()
 
